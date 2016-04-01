@@ -5,7 +5,7 @@ This project contains source code for a [Node.js](https://nodejs.org/) web appli
 Here is an overview of the MyWork application architecture. Note both this Node.js application and the iOS application are represented in the diagram.
 ![Architecture diagram](/images/arch_diagram.jpg "Architecture diagram")
 
---------------------------------------------------------------------------
+---------------------------------------------------------------------------
 
 ## Prerequisites
 * [Node.js](https://nodejs.org/) installed
