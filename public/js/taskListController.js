@@ -36,7 +36,7 @@ myTasksControllers.controller('taskListCtrl', ['$scope', '$rootScope', '$window'
                 $scope.loadingTasks = false;
             }).error(function(data, status, headers, config) {
             	$scope.loadingTasks = false;
-            	$location.url("/login");
+                $scope.errorMessage = data;
                 $scope.$apply();
             });
         }
