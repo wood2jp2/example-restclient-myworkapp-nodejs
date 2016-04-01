@@ -136,9 +136,9 @@ On the client side, the application uses [AngularJS](https://angularjs.org/) for
 
 | Page	| Controller	|		Details |
 |---------------|-----------------------|-----------------------|
-| login.html 	| loginController.js	|	Collect user instance and credentials	|
-| task_list.html	| taskListController.js	|	List of tasks assigned to the user |
-| task_detail.html	| taskDetailController.js	|	Details of a single task, view and add comments |
+| login.html 	| [loginController.js](/public/js/loginController.js)	|	Collect user instance and credentials	|
+| task_list.html	| [taskListController.js](/public/js/taskListController.js)	|	List of tasks assigned to the user |
+| task_detail.html	| [taskDetailController.js](/public/js/taskDetailController.js)	|	Details of a single task, view and add comments |
 
 ### Server side
 The Node JS server has 2 components: dispatchers and sn_api module.
