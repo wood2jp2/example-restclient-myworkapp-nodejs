@@ -185,9 +185,9 @@ Here is an equivalent sample curl request. It saves the response cookies in a ne
 $ curl --verbose --request GET \
 --header "Accept: application/json" \
 --user "john.doe:password" --cookie cookies.txt --cookie-jar cookies.txt \
- "https://myinstance.service-now.com/api/now/table/sys_user?user_name=john.doe&sysparm_fields=user_name,first_name,last_name,sys_id"
+ "https://myinstance.service-now.com/api/now/v2/table/sys_user?user_name=john.doe&sysparm_fields=user_name,first_name,last_name,sys_id"
 
-> GET /api/now/table/sys_user?user_name=john.doe&sysparm_fields=user_name,first_name,last_name,sys_id HTTP/1.1
+> GET /api/now/v2/table/sys_user?user_name=john.doe&sysparm_fields=user_name,first_name,last_name,sys_id HTTP/1.1
 > Authorization: Basic am9obi5kb2U6cGFzc3dvcmQ=
 > Host: myinstance.service-now.com
 > Accept: application/json
