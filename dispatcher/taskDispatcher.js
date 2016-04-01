@@ -24,7 +24,7 @@ module.exports = {
                     	// the successful body message should contain all the tasks as a JSON message.
                         serverResponse.status(response.statusCode).send(body);
                     } else if (response.statusCode == 400) {
-                        serverResponse.status(response.statusCode).send('Task service is not found installed on instance');
+                        serverResponse.status(response.statusCode).send('The Task Tracker API is not found on this instance. Did you install the "My Work" Update Set?');
                     } else {
                         serverResponse.status(response.statusCode).send(
                             'Error occured while communicating with ServiceNow instance. ' + response.statusMessage);

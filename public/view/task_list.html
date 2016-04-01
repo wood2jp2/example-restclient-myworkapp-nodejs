@@ -61,7 +61,7 @@
     </div>
 
     <!-- if there are no tasks displays an info message -->
-	<div ng-show="!loadingTasks">
+	<div ng-show="!loadingTasks && !errorMessage">
 	    <div class="row" ng-if="tasks|isEmpty">
 	        <div class="col-md-12 alert alert-info text-center " role="alert ">
 	            Nice Job! It looks like you don't have any tasks in your queue
