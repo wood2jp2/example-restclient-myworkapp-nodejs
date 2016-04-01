@@ -147,7 +147,7 @@ The Node JS server has 2 components: dispatchers and sn_api module.
 * **sn_api** module (`<this repo>/sn_api`)
 	* Encapsulate the details of sending REST API calls to ServiceNow
 
-`loginDispatcher.js`: handles user authentication. The dispatcher handles call reaching /login endpoint of Node.js server.
+`loginDispatcher.js`: handles user authentication. The dispatcher handles calls reaching /login endpoint of Node.js server.
 
 |Node endpoint| HTTP Method |Details|
 |--------|--------|--------|
