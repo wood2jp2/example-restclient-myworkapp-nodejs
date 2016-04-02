@@ -71,7 +71,7 @@ To print the usage, use --help
 ```bash
 $ node server.js --help
 
-Usage: node server.js [ -h ] [ -p <port> ]  [ -v ]
+Usage: node server.js [ -h ] [ -p <port> ] [ -v ]
    -h, --help                  Show this usage help
    -p <port>, --port=<port>    HTTP server listen port (default 3000)
    -v, --verbose               Verbose HTTP output

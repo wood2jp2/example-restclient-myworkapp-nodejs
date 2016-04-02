@@ -15,7 +15,7 @@ module.exports = {
     processArgs: function(filename) {
         // helper function for printing usage info
         function printUsageAndExit() {
-            console.log("\nUsage: node " + filename + " [ -h ] [ -p <port> ]  [ -v ]");
+            console.log("\nUsage: node " + filename + " [ -h ] [ -p <port> ] [ -v ]");
             console.log("   -h, --help                  Show this usage help");
             console.log("   -p <port>, --port=<port>    HTTP server listen port (default 3000)");
             console.log("   -v, --verbose               Verbose HTTP output");
