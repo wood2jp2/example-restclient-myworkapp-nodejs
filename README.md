@@ -161,8 +161,7 @@ The Node JS server has 2 components: dispatchers and sn_api module.
 | /tasks/:task/comments| GET | Uses the REST Table API to query for a task's work notes from the sys_journal_field table (`GET /api/now/v2/table/sys_journal_field`) |
 | /tasks/:task/comments | POST | Uses the **Task Tracker** Scripted REST API to add a comment (work note) to a task (`POST /api/x_snc_my_work/v1/tracker/task/{task_id}/comment`) |
 
-
-### Session management
+#### Session management
 Two types of sessions are managed by the application, between:
 * Browser and Node.js web application
 * Node.js server and ServiceNow instance
