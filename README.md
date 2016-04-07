@@ -128,10 +128,10 @@ POST /api/x_snc_my_work/v1/tracker/task/{task_id}/comment
 {"comment":"Hello, world!"}
 ```
 
+### Application Flow Detail
 ![App Flow](/images/node_flow.png)
 
-
-### Client side
+#### Client side
 On the client side, the application uses [AngularJS](https://angularjs.org/) for client side scripting and interaction with the Node.js server. Each page is associated with an [Angular controller](https://docs.angularjs.org/guide/controller).
 
 | Page	| Controller	|		Details |
@@ -140,7 +140,7 @@ On the client side, the application uses [AngularJS](https://angularjs.org/) for
 | task_list.html	| [taskListController.js](/public/js/taskListController.js)	|	List of tasks assigned to the user |
 | task_detail.html	| [taskDetailController.js](/public/js/taskDetailController.js)	|	Details of a single task, view and add comments |
 
-### Server side
+#### Server side
 The Node JS server has 2 components: dispatchers and sn_api module.
 * Dispatchers (`<this repo>/dispatcher`)
 	* Dispatch calls to ServiceNow REST API endpoints using the sn_api module. The 2 dispatchers used by this app are detailed below
