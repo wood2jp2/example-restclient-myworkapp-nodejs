@@ -1,5 +1,5 @@
 # Example REST Client My Work App: Node.js
-This project contains source code for a [Node.js](https://nodejs.org/) web application that interacts with ServiceNow's [REST APIs](https://docs.servicenow.com/integrate/inbound_rest/concept/c_RESTAPI.html) including a [Scripted REST API](https://docs.servicenow.com/integrate/custom_web_services/concept/c_CustomWebServices.html). The simple use case is a "MyWork" application which displays a user's current tasks and allows comments to be added. This application demonstrates how to build the MyWork app using Node.js. To see the same use case implemented in iOS, see [Example REST Client My Work App: iOS](https://github.com/ServiceNow/example-restclient-myworkapp-ios).
+This project contains source code for a [Node.js](https://nodejs.org/) web application that interacts with ServiceNow's [REST APIs](https://docs.servicenow.com/bundle/helsinki-servicenow-platform/page/integrate/inbound_rest/concept/c_RESTAPI.html) including a [Scripted REST API](https://docs.servicenow.com/bundle/helsinki-servicenow-platform/page/integrate/custom_web_services/concept/c_CustomWebServices.html). The simple use case is a "MyWork" application which displays a user's current tasks and allows comments to be added. This application demonstrates how to build the MyWork app using Node.js. To see the same use case implemented in iOS, see [Example REST Client My Work App: iOS](https://github.com/ServiceNow/example-restclient-myworkapp-ios).
 
 ## Architecture
 Here is an overview of the MyWork application architecture. Note both this Node.js application and the iOS application are represented in the diagram.
@@ -9,7 +9,7 @@ Here is an overview of the MyWork application architecture. Note both this Node.
 
 ## Prerequisites
 * [Node.js](https://nodejs.org/) installed
-* A ServiceNow instance ([Geneva Patch 3](https://docs.servicenow.com/release_notes/r_Geneva-Patch-3.html) or later).
+* A ServiceNow instance ([Geneva Patch 3](https://docs.servicenow.com/bundle/geneva-release-notes/page/c2/geneva-patch-3-2.html) or later).
 	* **Don't have a ServiceNow instance?** Get one **FREE** by signing up at https://developer.servicenow.com
 	* Not sure what version of ServiceNow your instance is running?  [Determine running version](http://wiki.servicenow.com/index.php?title=Upgrades_Best_Practices#Prepare_for_Upgrading)
 
@@ -30,7 +30,7 @@ Here is an overview of the MyWork application architecture. Note both this Node.
 	$ cd example-restclient-myworkapp-nodejs
 	$ npm install
 	```
-2. Install the **MyWork Update Set** in your ServiceNow instance. This is a ServiceNow scoped application which contains the **Task Tracker API** Scripted REST API and related files. Note you must be an admin of your ServiceNow instance to install update sets.
+2. Install the **MyWork Update Set** in your ServiceNow instance. This is a ServiceNow scoped application which contains the **Task Tracker API** Scripted REST API and related files. Note that you must have the admin role on your ServiceNow instance to install update sets.
 	1. Obtain the "My Work" update set
 		* Download the update set from [share.servicenow.com](https://share.servicenow.com/app.do#/detailV2/e43cf2f313de5600e77a36666144b0b4/overview)
 <br/>--or--
@@ -59,7 +59,7 @@ Server listening on: http://localhost:3000
 
 ```
 
-By default the Node application will listen for requests on localhost port 3000. Navigate your web browser to [http://localhost:3000](http://localhost:3000) and you should see the login screen for the My Work application.
+By default the Node application will listen for requests on localhost port 3000. Navigate in your web browser to [http://localhost:3000](http://localhost:3000) and you should see the login screen for the My Work application.
 
 To run the server on a different port, use the `--port=xxxx` option
 ```bash
@@ -67,7 +67,7 @@ $ node server.js --port=8080
 Server listening on: http://localhost:8080
 ```
 
-To print the usage, use --help
+For more information about available options, use --help
 ```bash
 $ node server.js --help
 
@@ -81,7 +81,7 @@ $
 --------------------------------------------------------------------------
 
 ## About the application
-In this application, the web browser is the client, which makes HTTP calls to the Node.js server 'server.js' to get task details.
+In this application, the web browser is the client which makes HTTP calls to the Node.js server 'server.js' to get task details.
 
 Server side, the Node application uses the **Task Tracker** Scripted REST API to get the list of tasks assigned to the logged-in user. Dispatchers handle interaction between Node and the ServiceNow instance.
 
@@ -90,15 +90,15 @@ Server side, the Node application uses the **Task Tracker** Scripted REST API to
 #### 1. Login
 ![Login](/images/login.png)
 
-After starting the Node.js web server, navigate your browser to http://localhost:3000. You're presented with a login page where you need to input your ServiceNow instance name (e.g. if your instance URL is https://myinstance.service-now.com, then enter `myinstance` into the Instance text box).
+After starting the Node.js web server, navigate your browser to http://localhost:3000. You're presented with a login page where you need to input your ServiceNow instance name (for example, if your instance URL is https://myinstance.service-now.com, then enter `myinstance` into the Instance text box).
 
-Enter the user ID and password for a user on the instance. This application uses Basic Authentication to manage user authentication against the ServiceNow REST API. When a user enters credentials, an HTTP POST call is made to the `/login` endpoint of the Node.js server), which internally establishes a session to the REST API.
+Enter the user ID and password for a user on the instance. This application uses Basic Authentication to manage user authentication with the ServiceNow REST API. When a user enters credentials, an HTTP POST call is made to the `/login` endpoint of the Node.js server), which internally establishes a session to the REST API.
 
-**NOTE**: The application makes all REST API calls from the Node.js server side, as opposed to client side from the web browser. You can imagine this application could also be refactored such that the API calls would be made from the client (i.e. AJAX), but that was not the intention of this example application.
+**NOTE**: The application makes all REST API calls from the Node.js server side, as opposed to client side from the web browser. This application could also be refactored so that the API calls would be made from the client (such as using AJAX), but that was not the intention of this example application.
 
-On successful login, the user is directed to the `/tasks` endpoint. On failure, the user is directed to the login page to reenter credentials.
+On successful login the user is directed to the `/tasks` endpoint. On failure, the user is directed to the login page to reenter credentials.
 
-After login, the application displays the tasks assigned to the user grouped by task type. The application is using the **Task Tracker API** to retrieve the list of tasks from ServiceNow. The logged in user must have access to view these tasks (e.g., Incidents, Problems, Tickets) for them to be returned in the REST API and subsequently displayed in the 'MyWork App'.
+After login, the application displays the tasks assigned to the user grouped by task type. The application uses the **Task Tracker API** to retrieve the list of tasks from ServiceNow. The logged in user must have access to view the tasks (such as Incidents, Problems, Tickets) for these tasks to be returned in the REST API and subsequently displayed in the 'MyWork App'.
 
 **> REST API Call:** Get user details (Table API)
 ```
@@ -141,7 +141,7 @@ On the client side, the application uses [AngularJS](https://angularjs.org/) for
 | task_detail.html	| [taskDetailController.js](/public/js/taskDetailController.js)	|	Details of a single task, view and add comments |
 
 #### Server side
-The Node JS server has 2 components: dispatchers and sn_api module.
+The Node.js server has 2 components: dispatchers and sn_api module.
 * Dispatchers (`<this repo>/dispatcher`)
 	* Dispatch calls to ServiceNow REST API endpoints using the sn_api module. The 2 dispatchers used by this app are detailed below
 * **sn_api** module (`<this repo>/sn_api`)
