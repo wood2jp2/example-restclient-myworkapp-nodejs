@@ -12,7 +12,7 @@ file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 module.exports = {
 	// Returns the tasks assigned to user.	
-    getTasks: function(serverRequest, serverResponse) {
+    getTasks(serverRequest, serverResponse) {
         if (serverRequest.session && serverRequest.session.snConfig && serverRequest.session.snConfig.snCookie) {
             var SNTask = serverRequest.app.get('snTask');
             var options = serverRequest.app.get('options');
@@ -35,12 +35,12 @@ module.exports = {
                 }
             });
         } else {
-            serverResponse.status(401).send('User sesion invalidated');
+            serverResponse.status(401).send('User session invalidated');
         }
     },
     // Adds a comments for a given task. Task id is part of the url and comment is send at the request body. Here we 
     // assume the user is a legitimate user and should have logged in and viewed tasks before making this request.
-    addComment: function(serverRequest, serverResponse) {
+    addComment(serverRequest, serverResponse) {
         var bodyString = '';
         // Aggregate the request body parts to create the whole message.
         serverRequest.on('data', function(data) {
@@ -62,7 +62,7 @@ module.exports = {
 
     // Returns the comments for a given task. The task id is received as the part of url. Here also we assume user is a legitimate
     // user and he has already logged in and has viewed the tasks.
-    getComments: function(serverRequest, serverResponse) {
+    getComments(serverRequest, serverResponse) {
         var SNTask = serverRequest.app.get('snTask');
         var options = serverRequest.app.get('options');
         // Session cookie should be available in session at this time.
@@ -73,31 +73,28 @@ module.exports = {
         });
     },
 
-    getTable: function(serverRequest, serverResponse) {
+    getTable(serverRequest, serverResponse) {
         if (serverRequest.session && serverRequest.session.snConfig && serverRequest.session.snConfig.snCookie) {
-            var SNTask = serverRequest.app.get('snTask')
-            var options = serverRequest.app.get('options');
-            var snTask = new SNTask(serverRequest.session.snConfig.snInstanceURL, serverRequest.session.snConfig.snCookie, options);
+            const 
+                SNTable = serverRequest.app.get('snTable'),
+                options = serverRequest.app.get('options'),
+                snTable = new SNTable(serverRequest.session.snConfig.snInstanceURL, serverRequest.session.snConfig.snCookie, options);
 
-            snTask.getTable(function(error, response, body) {
+            snTable.getTable((error, response, body) => {
                 serverRequest.app.get('respLogger').logResponse(options, response, body);
                 if (!error) {
-                    if (response.statusCode == 200) {
-                    	// the successful body message should contain all the tasks as a JSON message.
-                        serverResponse.status(response.statusCode).send(body);
-                    } else if (response.statusCode == 400) {
-                        serverResponse.status(response.statusCode).send('The Task Tracker API is not found on this instance. Did you install the "My Work" Update Set?');
-                    } else {
-                        serverResponse.status(response.statusCode).send(
-                            'Error occured while communicating with ServiceNow instance. ' + response.statusMessage);
-                    }
+                    response.statusCode == 200 ?
+                    	// the successful body message should contain all the Tables as a JSON message.
+                        serverResponse.status(response.statusCode).send(body) :
+                        response.statusCode == 400 ?
+                            serverResponse.status(response.statusCode).send('The Table Tracker API is not found on this instance. Did you install the "My Work" Update Set?') :
+                            serverResponse.status(response.statusCode).send(`Error occured while communicating with ServiceNow instance. ${response.statusMessage}`);
                 } else {
-                	serverResponse.status(500).send(
-                        'Error occured while communicating with ServiceNow instance. ');
+                	serverResponse.status(500).send('Error occured while communicating with ServiceNow instance.');
                 }
             });
         } else {
-            serverResponse.status(401).send('User sesion invalidated');
+            serverResponse.status(401).send('User session invalidated');
         }
     }
 }

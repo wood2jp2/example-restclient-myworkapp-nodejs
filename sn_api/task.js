@@ -38,24 +38,6 @@ Task.prototype.getTasks = function (callBack) {
     });
 }
 
-Task.prototype.getTable = function(callBack) {
-    var request = require('request');
-    request.debug = this.options.verbose;
-    request({
-        baseUrl: this.snInstanceURL,
-        method: 'GET',
-        // This uri is a part of myTasks service.
-        uri: '/api/now/table/x_entg_hhs_ea_it_system?sysparm_display_value=true&sysparm_fields=name%2Cacronym%2Csystem_state%2Cuuid',
-        json: true,
-        // Set the cookie to authenticate the request.
-        headers: {
-            'Cookie': this.snCoookie
-        }
-    }, function (err, response, body) {
-        callBack(err, response, body);
-    });
-}
-
 // Adds a comment to the task. 
 Task.prototype.addComment = function (taskID, comment, callBack) {
     var request = require('request');

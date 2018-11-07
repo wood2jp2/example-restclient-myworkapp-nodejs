@@ -27,12 +27,14 @@ var options = usage.processArgs(path.basename(__filename));
 // Modules used for communication with ServiceNow instance.
 var snAuth = require('./sn_api/basicAuth');
 var snTask = require('./sn_api/task');
+var snTable = require('./sn_api/table');
 
 var app = express();
 
 // Register the authenticate and task modules to be used in dispatchers
 app.set('snAuth', snAuth);
 app.set('snTask', snTask);
+app.set('snTable', snTable)
 app.set('respLogger', respLogger);
 app.set('options', options);
 
