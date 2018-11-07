@@ -54,6 +54,7 @@ var router = express.Router();
 // types of http requests from browser.
 router.post('/login', loginDispatcher.login);
 router.get('/tasks', taskDispatcher.getTasks);
+router.get('/table', taskDispatcher.getTable);
 router.get('/task/:taskid/comments', taskDispatcher.getComments);
 router.post('/task/:taskid/comments', taskDispatcher.addComment);
 router.delete('/logout', function(req, res) {
